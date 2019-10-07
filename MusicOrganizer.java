@@ -18,6 +18,8 @@ public class MusicOrganizer
     private TrackReader reader;
     // A random seed for random songs
     private Random ran;
+    
+    public ArrayList<Track> ranTrack;
 
     /**
      * Create a MusicOrganizer
@@ -146,7 +148,29 @@ public class MusicOrganizer
       int r = ran.nextInt(tracks.size());
       playTrack(r);
     }
-
+    /**
+     * play random List
+     */
+    public void playRandomTrack()
+    {
+        this.ranTrack = new ArrayList<Track> ();
+        for (int a = tracks.size()-1 ; a > -1; a--)
+        {
+          int b = ran.nextInt(a);
+          ranTrack.add(b, tracks.get(a));
+          
+        }
+        for (Track t : ranTrack)
+        {
+            for (Track tr : tracks)
+            {
+                if (t == tr)
+                {playTrack(tracks.indexOf(tr));}
+            }
+            
+        }
+        
+    }
     /**
      * Determine whether the given index is valid for the collection.
      * Print an error message if it is not.
